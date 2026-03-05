@@ -5,6 +5,7 @@
 Time series forecasting is used to predict future values based on previously observed data. In this study, the **AutoRegressive Integrated Moving Average (ARIMA)** model is used to analyze and forecast a dataset. The model helps identify patterns in time series data and estimate future values.
 
 The dataset used contains **10 observations**, representing values that increase over time. The **ARIMA (1,0,1)** model was applied using Python libraries such as **NumPy, Statsmodels, and Matplotlib**.
+<img width="872" height="574" alt="Screenshot 2026-03-05 183133" src="https://github.com/user-attachments/assets/b7bf52af-0d40-429f-afe7-d40c821255a5" />
 
 ---
 
@@ -102,6 +103,7 @@ The generated graph contains:
 * **Orange line** → Forecasted future values
 
 The graph shows that the forecast begins after the 10th observation and follows the pattern learned from historical data.
+<img width="887" height="568" alt="Screenshot 2026-03-05 183241" src="https://github.com/user-attachments/assets/8e995694-cd46-48c6-8dbb-90bcdeac1734" />
 
 ---
 
