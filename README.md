@@ -5,7 +5,7 @@
 Time series forecasting is a critical tool for predicting financial market trends based on historical data. In this project, the **ARMA (AutoRegressive Moving Average)** model is employed to analyze and forecast the price of gold. The primary objective is to identify the underlying patterns in gold valuation and estimate future prices for short-term decision-making.
 
 The analysis uses historical gold price data (24K Rate per 1 Gram) and applies the **ARIMA(1,0,1)** model—which functions as an ARMA model—using Python libraries including **Pandas, NumPy, Statsmodels, and Matplotlib**.
-<img width="889" height="656" alt="Screenshot 2026-03-05 213803" src="https://github.com/user-attachments/assets/7acfb768-e903-49c6-bdf9-487444d0a499" />
+<img width="801" height="671" alt="Screenshot 2026-03-05 220821" src="https://github.com/user-attachments/assets/cdb948e1-fe0b-400e-850f-b8a8c6e0f3b1" />
 
 ---
 
