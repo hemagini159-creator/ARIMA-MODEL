@@ -114,6 +114,3 @@ The results indicate that although the data previously increased steadily, the p
 ---
 
 
-* **A longer 3–4 page report for assignment/project submission**, or
-* **Explanation of each line of your Python code** for viva or presentation.
-# ARIMA-MODEL
