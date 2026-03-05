@@ -1,4 +1,4 @@
-# Technical Report: Gold Price Forecasting Analysis
+# Gold Price Forecasting Analysis
 
 ## 1. Introduction
 
