@@ -1,86 +1,75 @@
-# Gold Price Forecasting: Technical Analysis Report
+# Technical Report: Gold Price Forecasting Analysis
 
 ## 1. Introduction
 
-Time series forecasting is a critical tool for predicting financial market trends based on historical data. In this project, the **ARMA (AutoRegressive Moving Average)** model is employed to analyze and forecast the price of gold. The primary objective is to identify the underlying patterns in gold valuation and estimate future prices for short-term decision-making.
-
-The analysis uses historical gold price data (24K Rate per 1 Gram) and applies the **ARIMA(1,0,1)** model—which functions as an ARMA model—using Python libraries including **Pandas, NumPy, Statsmodels, and Matplotlib**.
-<img width="801" height="671" alt="Screenshot 2026-03-05 220821" src="https://github.com/user-attachments/assets/cdb948e1-fe0b-400e-850f-b8a8c6e0f3b1" />
+Time series forecasting is a crucial method for predicting future market trends by analyzing historical patterns. In this study, the **AutoRegressive Integrated Moving Average (ARIMA)** model—specifically configured as an **ARMA(1,1)** or **ARIMA(1,1,1)**—is applied to historical gold price data. The objective is to evaluate price momentum and generate short-term projections for the 24K gold rate per gram.
+<img width="801" height="671" alt="Screenshot 2026-03-05 220821" src="https://github.com/user-attachments/assets/a73ff267-be98-4020-b6ed-9b980b58665e" />
 
 ---
 
 ## 2. Data Description
 
-The dataset utilized for this model consists of historical gold price records. Key characteristics include:
+The dataset comprises historical 24K gold prices (per 1 gram) with the following attributes:
 
-* **Source**: An Excel dataset titled `Gold Price.xlsx`.
-* **Feature**: The "24K Rate (1 Gram)" column represents the daily market value of gold.
-* **Index**: The data is indexed by a "Date" column, which was converted to a datetime format for time-series compatibility.
-* **Trend**: The dataset reflects historical fluctuations leading up to a specific evaluation period.
+* **Primary Variable**: 24K Rate (1 Gram).
+* **Time Horizon**: The data spans early 2026, with observations showing significant volatility, reaching peaks above 18,000 before stabilizing.
+* **Trend Analysis**: Initial analysis of the raw data indicated a strong upward trend followed by a recent corrective phase.
+
+| Attribute | Details |
+| --- | --- |
+| **Data Source** | `Gold Price.xlsx` |
+| **Observation Frequency** | Daily (Freq: D) |
+| **Target Period** | January 2026 – March 2026 |
 
 ---
 
 ## 3. Methodology
 
-### The ARMA Model
+The forecasting process utilized the **ARIMA(1,1,1)** model framework to account for both the auto-regressive nature of prices and the moving average of previous forecast errors.
 
-The model implemented is an **ARIMA (1, 0, 1)**, which consists of the following components:
+### Model Components:
 
-* **AR (AutoRegressive) = 1**: Utilizes the relationship between the current price and the price from the immediate previous period ($p=1$).
-* **I (Integrated) = 0**: No differencing was applied, assuming the series is stationary ($d=0$).
-* **MA (Moving Average) = 1**: Incorporates the dependency between an observation and a residual error from a moving average model ($q=1$).
-
-**Implementation Steps:**
-
-1. Data loading and date-time indexing.
-2. Defining the "24K Rate" as the target variable.
-3. Fitting the ARIMA(1,0,1) model to the historical data.
-4. Generating a **5-step out-of-sample forecast**.
-5. Visualizing the results using a line plot.
+* **AR (1)**: Uses one previous value to capture momentum.
+* **I (1)**: Applies first-order differencing to stabilize the mean and handle the dataset's trend.
+* **MA (1)**: Incorporates the previous period's forecast error to refine the current prediction.
 
 ---
 
-## 4. Model Summary
+## 4. Technical Refinement
 
-The model was successfully fitted using the `statsmodels` library. While the notebook execution provided a summary of forecasts, it also noted specific technical warnings:
+Initial model execution revealed a date-alignment issue where forecasts were incorrectly mapped to the year 1970 due to a lack of defined frequency. This was corrected by:
 
-* **Frequency Warning**: The dataset did not have an associated frequency (e.g., daily), so the model utilized an integer-based index for predictions.
-* **Compatibility**: The code was executed using **NumPy version 2.1.3**.
+1. Converting the index to a proper datetime format.
+2. Assigning a explicit **Daily ('D') frequency** to the index.
+3. Synchronizing the forecast starting point with the end of the historical series (March 2026).
 
 ---
 
 ## 5. Forecast Results
 
-The model generated the following **5 future gold prices** based on the learned historical patterns:
+The refined model generated a **5-day forecast** for gold prices following the last observation:
 
-| Step Index | Predicted Gold Price (per Gram) |
+| Date | Forecast Value (per Gram) |
 | --- | --- |
-| **30** | 16,490.64 |
-| **31** | 16,315.00 |
-| **32** | 16,203.27 |
-| **33** | 16,132.18 |
-| **34** | 16,086.95 |
+| **2026-03-06** | 16,321.48 |
+| **2026-03-07** | 16,062.42 |
+| **2026-03-08** | 15,904.93 |
+| **2026-03-09** | 15,809.19 |
+| **2026-03-10** | 15,750.98 |
 
-**Interpretation**: The forecast indicates a gradual downward trend or stabilization following the last observed price in the dataset.
+**Interpretation**: After the recent peak and subsequent dip, the model predicts a continued, albeit gradual, stabilization trend toward the 15,750 level.
 
 ---
 
 ## 6. Graphical Representation
 
-The generated plot provides a visual comparison of the model's performance:
+The updated visualization confirms that the forecast (orange line) now correctly appends to the original price data (blue line).
 
-* **Blue Line (Original Price)**: Shows the historical trajectory of gold prices.
-* **Orange Line (Forecast)**: Represents the projected 5-step future prices.
-
-The visualization helps in identifying how closely the model aligns with recent historical movements before projecting the stabilization trend.
+* **Historical Data**: Shows high volatility with a recent peak in February followed by a sharp decline.
+* **Projected Trend**: The forecast smooths out the recent sharp drop, suggesting the price is approaching a short-term floor.
 
 ---
 
 ## 7. Conclusion
 
-The **ARMA(1, 1)** model was successfully applied to forecast the 24K gold rate per gram. The model successfully captured recent price momentum to provide a 5-step outlook.
-
-The results suggest that gold prices may experience a **slight stabilization** in the short term. This analysis serves as a baseline; future iterations could be improved by assigning an explicit date frequency and performing stationarity tests (like the ADF test) to further refine the $d$ and $p$ parameters.
-
----
-
+The application of the **ARIMA(1,1,1)** model successfully identified the corrective trend in gold prices. By resolving the indexing issues, the model now provides a chronologically accurate 5-day outlook. The results indicate that while the price has experienced a significant decline from its 18,000+ peak, the rate of decline is expected to slow down as it moves through mid-March 2026.
